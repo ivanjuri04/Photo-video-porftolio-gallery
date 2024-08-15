@@ -1,0 +1,60 @@
+{% extends 'base1.html' %}
+
+{% block content %}
+    <body>
+        <!-- partial:index.partial.html -->
+        <h2 class="calistoga-regular" ><a href="{% url 'gallery' slug %}">Go Back</a></h2>
+        <div class="thumbs">
+            {% for picture in product_video %}
+            <a href="#target{{ forloop.counter }}"><video  controls controlsList="nodownload" preload="metadata">
+                <source src="{{ picture.video.url }}#t=0.1" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <p>{{ picture.title }}</p></a>
+            {% endfor %}
+        </div>
+        <h2 class="calistoga-regular"><a href="{% url 'index'%}">Home</a></h2>
+        
+        <div class="lightbox">
+            {% for picture in product_video %}
+            <div class="target" id="target{{ forloop.counter }}">
+                {% if forloop.first %}
+                <span>
+                    <!-- spacer to keep content centered in the flex container -->
+                </span>
+                {% endif %}
+                
+                {% if not forloop.first %}
+                <a href="#target{{ forloop.counter0 }}" class="fas fa-chevron-left nav" title="previous"></a>
+                {% endif %}
+                
+                <div class="content">
+                    <video controls  >
+                        <source src="{{ picture.video.url }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <p>{{ picture.title }}</p>
+                </div>
+                
+                {% if not forloop.last %}
+                <a href="#target{{ forloop.counter|add:1 }}" class="fas fa-chevron-right nav" title="next"></a>
+                {% endif %}
+                
+                {% if forloop.last %}
+                <span>
+                    <!-- spacer to keep content centered in the flex container -->
+                </span>
+                {% endif %}
+            </div>
+            {% endfor %}
+            <a href="#!" class="fas fa-times close nav"></a>
+        </div>
+        
+        <!-- partial -->
+          
+    </body>
+    
+</html>
+{% endblock %}
+        
+    

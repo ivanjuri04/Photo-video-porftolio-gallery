@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Gallery{% endblock %}
+
+{% block content %}
+
+
+<div class="img-fluid full-screen-img">
+    <div class="row">
+        <div class="col-12 ">
+            <img  src="{% static 'images/backkk.png' %}" alt="placeholder 960" class="img-fluid full-screen-img" />
+           
+        </div> 
+    </div> 
+   
+ <section class="schedule-section">
+    <h1 style="text-align: center">Gallery</h1>
+        {%for i in product_gallery%}
+            <img src="{{i.image.url}}">
+        {%endfor%}  
+          
+       
+    </div>
+</div>
+
+</section>
+{% endblock %}

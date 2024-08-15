@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Gallery{% endblock %}
+
+{% block content %}
+  
+ <div class="img-fluid full-screen-img">
+    <div class="row">
+        <div class="col-12 ">
+            <img  src="{% static 'images/port.png' %}" alt="placeholder 960" class="img-fluid full-screen-img" />
+           
+        </div> 
+    </div> 
+         
+
+       
+    
+   <section class="gallery-section">
+        <div>
+            {% for picture in pictures %}
+                {% if forloop.counter0|divisibleby:2 %}
+                    <div class="row mt-4">
+                {% endif %}
+    
+                <div class="col-lg-6 col-12 mx-auto d-flex justify-content-center mb-4">
+                    <a class="navbar-brand text-center" href="{{ picture.get_url }}">
+                        <div class="image__m gallery-image-container" style="border-radius: 30%;">
+                            
+                            <img class="logo img-fluid image__img gallery-image" style="border-radius: 30%;" src="{{ picture.images.url }}" alt="{{ picture.title }}">
+                            <div class="image__overlay gallery-overlay"  style="border-radius: 30%;">
+                                <div class="image__title gallery-title">Click</div>
+                                <p class="image__description gallery-description">for more of this project</p>
+                            </div>
+                        </div>
+                        <!-- <h1 class="text-white">Click for more</h1> -->
+                    </a>
+                </div>
+    
+                {% if forloop.counter0|divisibleby:2 or forloop.last %}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </section>    
+ </div>    
+    
+       
+
+    
+    
+        
+     
+             
+ 
+    
+
+
+
+{% endblock %}
